@@ -2,9 +2,6 @@ import React from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
 export default function ActionButton() {
-
-
-
   return (
     <View>
       <TouchableOpacity
@@ -13,7 +10,7 @@ export default function ActionButton() {
         <Text
           style={style.text}
         >
-          START
+        BEGIN
         </Text>
       </TouchableOpacity>
     </View>
