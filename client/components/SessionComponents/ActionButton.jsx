@@ -1,18 +1,22 @@
-import React from 'react';
+import React, { useState, useContext } from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import SessionContext from '../Contexts.jsx';
+
 
 export default function ActionButton() {
+  const state = useContext(SessionContext);
+  const [session, setSession] = useState(false);
+
+  const startSession = () => {
+    console.log('do you see me')
+    setSession(!session);
+  };
+
   return (
-    <View
-      style={style.wrapper}
-    >
-      <TouchableOpacity
-        style={style.button}
-      >
-        <Text
-          style={style.text}
-        >
-        START
+    <View style={style.wrapper}>
+      <TouchableOpacity style={style.button} onPress={startSession}>
+        <Text style={style.text}>
+          {session ? 'PAUSE' : 'START'}
         </Text>
       </TouchableOpacity>
     </View>

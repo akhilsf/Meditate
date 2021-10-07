@@ -7,7 +7,10 @@ export default function Timer() {
   const [seconds, setSeconds] = useState(1800);
 
   let minutes = Math.floor(seconds / 60);
-  let secs = secs < 10 ? '0' + secs : seconds % 60;
+  let secs = seconds % 60;
+  if (secs < 10) {
+    secs = `0${secs}`;
+  }
 
   let startTimer = () => {
     const tick = setInterval(() => {
