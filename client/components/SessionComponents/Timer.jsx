@@ -4,19 +4,17 @@ import SessionContext from '../Contexts.jsx';
 
 export default function Timer() {
   const state = useContext(SessionContext);
-  const [seconds, setSeconds] = useState(30);
+  const [seconds, setSeconds] = useState(1800);
 
   let minutes = Math.floor(seconds / 60);
-  let secs = seconds % 60;
-  if (secs < 10) {
-    secs = '0' + secs;
-  }
+  let secs = secs < 10 ? '0' + secs : seconds % 60;
 
   let startTimer = () => {
-    setInterval(() => {
-      let time = seconds - 1;
-      setSeconds(time);
-    }, 1000)
+    const tick = setInterval(() => {
+      setSeconds(seconds => seconds - 1);
+      console.log(seconds);
+    }, 1000);
+    return () => clearInterval(tick);
   };
 
   // startTimer();
@@ -24,7 +22,7 @@ export default function Timer() {
   return (
     <View style={style.timer}>
       <Text style={style.timerText}>{minutes}:{secs}</Text>
-      <Text style={style.secondsText}></Text>
+      <Text style={style.subtext}>minutes</Text>
     </View>
   )
 };
@@ -33,17 +31,17 @@ const style = StyleSheet.create({
   timer: {
     flex: 1,
     alignItems: 'center',
-    position: 'absolute',
-    top: '25%',
+    top: '20%',
+    marginBottom: '5%'
   },
   timerText: {
     color: '#787878',
     fontSize: 86,
   },
-  secondsText: {
+  subtext: {
     color: '#787878',
     fontSize: 24,
-    fontWeight: 'bold',
+    fontWeight: '500',
   }
 })
 

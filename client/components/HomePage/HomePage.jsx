@@ -16,9 +16,9 @@ export default () => {
 
 const styles = StyleSheet.create({
   container: {
+    flexDirection: 'column',
     flex: 1,
     backgroundColor: 'rgba(255, 229, 217, 0.33)',
     alignItems: 'center',
-    justifyContent: 'center',
   }
 });

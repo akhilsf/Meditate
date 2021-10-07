@@ -3,14 +3,16 @@ import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
 export default function ActionButton() {
   return (
-    <View>
+    <View
+      style={style.wrapper}
+    >
       <TouchableOpacity
         style={style.button}
       >
         <Text
           style={style.text}
         >
-        BEGIN
+        START
         </Text>
       </TouchableOpacity>
     </View>
@@ -18,6 +20,9 @@ export default function ActionButton() {
 };
 
 const style = StyleSheet.create({
+  wrapper: {
+    flex: 1,
+  },
   button: {
     justifyContent: 'center',
     alignItems: 'center',
