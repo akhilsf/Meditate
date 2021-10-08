@@ -1,8 +1,8 @@
-import {createContext} from 'react';
+import { createContext } from 'react';
 
 const SessionContext = createContext({
-  page: 'home',
   inSession: false,
+  setSession: () => {}
 });
 
 export default SessionContext;

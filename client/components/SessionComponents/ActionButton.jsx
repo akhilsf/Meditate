@@ -4,19 +4,18 @@ import SessionContext from '../Contexts.jsx';
 
 
 export default function ActionButton() {
-  const state = useContext(SessionContext);
-  const [session, setSession] = useState(false);
+  const { inSession, setSession } = useContext(SessionContext);
 
   const startSession = () => {
-    console.log('do you see me')
-    setSession(!session);
+    setSession(true);
+    console.log(inSession);
   };
 
   return (
     <View style={style.wrapper}>
       <TouchableOpacity style={style.button} onPress={startSession}>
         <Text style={style.text}>
-          {session ? 'PAUSE' : 'START'}
+          START
         </Text>
       </TouchableOpacity>
     </View>
