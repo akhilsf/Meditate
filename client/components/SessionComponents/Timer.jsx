@@ -3,24 +3,13 @@ import { StyleSheet, Text, View } from 'react-native';
 import SessionContext from '../Contexts.jsx';
 
 export default function Timer() {
-  const state = useContext(SessionContext);
-  const [seconds, setSeconds] = useState(1800);
+  const { time } = useContext(SessionContext);
 
-  let minutes = Math.floor(seconds / 60);
-  let secs = seconds % 60;
+  let minutes = Math.floor(time / 60);
+  let secs = time % 60;
   if (secs < 10) {
     secs = `0${secs}`;
   }
-
-  let startTimer = () => {
-    const tick = setInterval(() => {
-      setSeconds(seconds => seconds - 1);
-      console.log(seconds);
-    }, 1000);
-    return () => clearInterval(tick);
-  };
-
-  // startTimer();
 
   return (
     <View style={style.timer}>

@@ -10,7 +10,8 @@ const Stack = createNativeStackNavigator();
 
 export default () => {
   const [inSession, setSession] = useState(false);
-  const value = { inSession, setSession }
+  const [time, setTime] = useState(600);
+  const value = { inSession, setSession, time, setTime };
 
   return (
     <SessionContext.Provider value={value}>

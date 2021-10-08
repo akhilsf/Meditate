@@ -4,18 +4,34 @@ import SessionContext from '../Contexts.jsx';
 
 
 export default function ActionButton() {
-  const { inSession, setSession } = useContext(SessionContext);
+  const { inSession, setSession, time, setTime } = useContext(SessionContext);
 
-  const startSession = () => {
-    setSession(true);
+  const sessionAction = () => {
     console.log(inSession);
+    const changeSession = new Promise((resolve, reject) => {
+      resolve(setSession(!inSession))
+    });
+
+    changeSession
+      .then(console.log(inSession))
+      .catch((error) => {
+        console.log(error);
+      })
+
+    // if (inSession) {
+    //   setInterval(() => {
+    //     setTime(time - 1);
+    //   }, 1000);
+    // } else {
+    //   setTime(time);
+    // }
   };
 
   return (
     <View style={style.wrapper}>
-      <TouchableOpacity style={style.button} onPress={startSession}>
+      <TouchableOpacity style={style.button} onPress={sessionAction}>
         <Text style={style.text}>
-          START
+          {inSession ? 'PAUSE' : 'START'}
         </Text>
       </TouchableOpacity>
     </View>
