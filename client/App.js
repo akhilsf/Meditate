@@ -3,8 +3,9 @@ import React, { useState } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { StyleSheet, Text, View } from 'react-native';
-import SessionContext from './components/Contexts.jsx'
-import HomePage from './components/HomePage/HomePage.jsx';
+import SessionContext from './Contexts.jsx'
+import HomePage from './pages/HomePage/HomePage.jsx';
+import TimeSelect from './pages/settings/TimeSelect.jsx';
 
 const Stack = createNativeStackNavigator();
 
@@ -24,6 +25,10 @@ export default () => {
           <Stack.Screen
             name='Home'
             component={HomePage}
+          />
+          <Stack.Screen
+            name='TimeSelect'
+            component={TimeSelect}
           />
         </Stack.Navigator>
       </NavigationContainer>
