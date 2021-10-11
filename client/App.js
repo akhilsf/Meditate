@@ -10,9 +10,10 @@ import TimeSelect from './pages/settings/TimeSelect.jsx';
 const Stack = createNativeStackNavigator();
 
 export default () => {
-  const [inSession, setSession] = useState(false);
+  const [inMeditation, setInMeditation] = useState(false);
+  const [inSession, setInSession] = useState(false);
   const [time, setTime] = useState(600);
-  const value = { inSession, setSession, time, setTime };
+  const value = { inMeditation, setInMeditation, time, setTime, inSession, setInSession};
 
   return (
     <SessionContext.Provider value={value}>

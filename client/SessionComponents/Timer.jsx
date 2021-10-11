@@ -5,7 +5,7 @@ import ActionButton from './ActionButton.jsx';
 import { CountdownCircleTimer } from 'react-native-countdown-circle-timer';
 
 export default function Timer() {
-  const { inSession, setSession, time } = useContext(SessionContext);
+  const { inMeditation, setInMeditation, time, inSession, setInSession } = useContext(SessionContext);
   const [isPlaying, setIsPlaying] = useState(false);
 
   const timeConvert = (remainingTime) => {
@@ -24,12 +24,15 @@ export default function Timer() {
   }
 
   return (
-    <View style={style.container}>
+    <Animated.View style={
+      inSession ? dynamicStyle('20%').container : dynamicStyle('10%').container
+      }>
       <CountdownCircleTimer
-        isPlaying={inSession}
-        duration={time}
+        isPlaying={inMeditation}
+        duration={10}
         colors={[['#A4AA88', 1]]}
         size={300}
+        onComplete={() => setInSession(!inSession)}
       >
         {({ remainingTime, animatedColor }) => (
           <View style={style.textContainer}>
@@ -41,18 +44,21 @@ export default function Timer() {
         )}
       </CountdownCircleTimer>
         <ActionButton />
-    </View>
+    </Animated.View>
   )
 };
 
-const style = StyleSheet.create({
+const dynamicStyle = (pos, opacity) => StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    top: '10%',
-    marginBottom: '20%'
+    top: pos,
+    marginBottom: '20%',
   },
+})
+
+const style = StyleSheet.create({
   textContainer: {
     flex: 1,
     alignItems: 'center',

@@ -1,14 +1,19 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import Timer from '../../SessionComponents/Timer.jsx';
 import ActionButton from '../../SessionComponents/ActionButton.jsx';
 import MenuOptions from './MenuOptions.jsx';
+import SessionContext from '../../Contexts.jsx';
 
 export default ({ navigation }) => {
+  const { inSession } = useContext(SessionContext);
+
   return (
     <View style={styles.container}>
       <Timer />
-      <MenuOptions navigation={navigation} />
+      {inSession ? null :
+       < MenuOptions navigation={navigation} />
+      }
     </View>
   );
 }
