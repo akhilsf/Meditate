@@ -6,13 +6,14 @@ import MenuOptions from './MenuOptions.jsx';
 import SessionContext from '../../Contexts.jsx';
 
 export default ({ navigation }) => {
-  const { inSession } = useContext(SessionContext);
+  const { inSession, sessionFinished } = useContext(SessionContext);
 
   return (
     <View style={styles.container}>
       <Timer />
       {inSession ? null :
-       < MenuOptions navigation={navigation} />
+        sessionFinished ? null :
+       <MenuOptions navigation={navigation} />
       }
     </View>
   );

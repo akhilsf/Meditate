@@ -6,7 +6,9 @@ const SessionContext = createContext({
   time: 600,
   setTime: () => {},
   inSession: false,
-  setPause: () => {},
+  setInSession: () => {},
+  sessionFinished: false,
+  setSessionFinished: () => {},
 });
 
 export default SessionContext;

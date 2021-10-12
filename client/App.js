@@ -13,7 +13,13 @@ export default () => {
   const [inMeditation, setInMeditation] = useState(false);
   const [inSession, setInSession] = useState(false);
   const [time, setTime] = useState(600);
-  const value = { inMeditation, setInMeditation, time, setTime, inSession, setInSession};
+  const [sessionFinished, setSessionFinished] = useState(false);
+  const value = {
+    inMeditation, setInMeditation,
+    time, setTime,
+    inSession, setInSession,
+    sessionFinished, setSessionFinished
+  };
 
   return (
     <SessionContext.Provider value={value}>

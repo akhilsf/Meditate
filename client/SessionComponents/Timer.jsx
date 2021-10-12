@@ -5,8 +5,14 @@ import ActionButton from './ActionButton.jsx';
 import { CountdownCircleTimer } from 'react-native-countdown-circle-timer';
 
 export default function Timer() {
-  const { inMeditation, setInMeditation, time, inSession, setInSession } = useContext(SessionContext);
-  const [isPlaying, setIsPlaying] = useState(false);
+  const {
+    inMeditation, setInMeditation,
+    time, setTime,
+    inSession, setInSession,
+    sessionFinished, setSessionFinished,
+  } = useContext(SessionContext);
+
+  const [key, setKey] = useState(0);
 
   const timeConvert = (remainingTime) => {
     let minutes = Math.floor(remainingTime / 60);
@@ -23,27 +29,36 @@ export default function Timer() {
     return `${minutes}:${seconds}`;
   }
 
+  const resetTimer = () => {
+    setKey(key + 1);
+  }
+
   return (
     <Animated.View style={
       inSession ? dynamicStyle('20%').container : dynamicStyle('10%').container
       }>
       <CountdownCircleTimer
+        key={key}
         isPlaying={inMeditation}
-        duration={10}
+        duration={3}
         colors={[['#A4AA88', 1]]}
         size={300}
-        onComplete={() => setInSession(!inSession)}
+        strokeWidth={8}
+        onComplete={() => {
+          setSessionFinished(true);
+          setInMeditation(!inMeditation);
+        }}
       >
         {({ remainingTime, animatedColor }) => (
           <View style={style.textContainer}>
             <Animated.Text style={style.timerText}>
               {timeConvert(remainingTime)}
             </Animated.Text>
-            <Text style={style.subtext}>remaining</Text>
+            <Text style={style.subtext}>{inSession ? 'remaining' : 'minutes'}</Text>
           </View>
         )}
       </CountdownCircleTimer>
-        <ActionButton />
+        <ActionButton resetTimer={resetTimer} />
     </Animated.View>
   )
 };

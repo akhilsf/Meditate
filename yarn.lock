@@ -5107,6 +5107,11 @@
     "prop-types" "^15.6.0"
     "react-timer-mixin" "^0.13.4"
 
+"react-native-wheel-picker@^1.2.0":
+  "integrity" "sha1-BQPjezMmhWckUBZ5vfVpfg3SR6Y="
+  "resolved" "https://registry.npmjs.org/react-native-wheel-picker/-/react-native-wheel-picker-1.2.0.tgz"
+  "version" "1.2.0"
+
 "react-native-wheel-time-picker@^0.5.0":
   "integrity" "sha512-+MdGPVlYUPvfySaJ2bYQ7jqmZElpAYCX5ToAJxw7j4E88Gj0Sv+oW/4NebApkKTd+iLkcE1btYHZnAJd7lY6mQ=="
   "resolved" "https://registry.npmjs.org/react-native-wheel-time-picker/-/react-native-wheel-time-picker-0.5.0.tgz"
