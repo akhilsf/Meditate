@@ -1,37 +1,40 @@
-import React, { useState, useMemo } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import TimePicker from 'react-native-wheel-time-picker';
+import React, { useState, useContext } from 'react';
+import { StyleSheet, Text, View, Picker } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import SessionContext from '../../Contexts.jsx';
 
-
-const MILLISECONDS_PER_MINUTE = 60 * 1000;
-const MILLISECONDS_PER_HOUR = 60 * 60 * 1000;
-const MILLISECONDS_PER_DAY = 24 * MILLISECONDS_PER_HOUR;
 
 export default () => {
-  const [timeValue, setTimeValue] = useState(Date.now() % MILLISECONDS_PER_DAY);
-  const [hour, min] = useMemo(() => {
-    return [
-      Math.floor(timeValue / MILLISECONDS_PER_HOUR),
-      Math.floor((timeValue % MILLISECONDS_PER_HOUR) / MILLISECONDS_PER_MINUTE),
-      Math.floor((timeValue % MILLISECONDS_PER_MINUTE) / 1000),
-    ];
-  }, [timeValue]);
+  const {
+    time, setTime,
+  } = useContext(SessionContext);
+
+  console.log(zeroToSixty);
+
+  const timeConvert = () => {
+    let minutes = Math.floor(time / 60);
+    let seconds = time % 60;
+
+    if (minutes < 10) {
+      minutes = `0${minutes}`;
+    }
+
+    if (seconds < 10) {
+      seconds = `0${seconds}`;
+    }
+
+    return [minutes, seconds];
+  }
+
+  const minutes = [...Array(60)]
 
   return (
     <View style={styles.container}>
-      <TimePicker
-        value={timeValue}
-        wheelProps={{
-          wheelHeight: 100,
-          itemHeight: 15,
-        }}
-        onChange={(newValue) => setTimeValue(newValue)}
-      />
-      <Text style = {styles.timeValue}>
-        {`${hour < 10 ? '0' : ''}${hour}:${min < 10 ? '0' : ''}${min}`}
-      </Text>
+      <Picker
+        selectedValue={10}
+      >
+      </Picker>
     </View>
   );
 }

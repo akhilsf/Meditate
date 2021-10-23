@@ -1,7 +1,7 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import SessionContext from '../Contexts.jsx';
-
+import SoundPlayer from './SoundPlayer.jsx';
 
 export default function ActionButton({ resetTimer }) {
   const {
@@ -15,11 +15,12 @@ export default function ActionButton({ resetTimer }) {
     if (sessionFinished) {
       setInMeditation(false);
       setInSession(false);
-      setSessionFinished(!sessionFinished);
+      setSessionFinished(false);
       resetTimer();
     } else if (!inSession) {
       setInSession(!inSession);
       setInMeditation(!inMeditation)
+      SoundPlayer();
     } else {
       setInMeditation(!inMeditation);
     }

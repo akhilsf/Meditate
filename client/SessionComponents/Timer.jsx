@@ -34,13 +34,17 @@ export default function Timer() {
   }
 
   return (
-    <Animated.View style={
-      inSession ? dynamicStyle('20%').container : dynamicStyle('10%').container
+    <View style={
+      inMeditation ?
+        dynamicStyle('20%').container :
+        inSession ?
+          dynamicStyle('20%').container :
+          dynamicStyle('10%').container
       }>
       <CountdownCircleTimer
         key={key}
         isPlaying={inMeditation}
-        duration={3}
+        duration={time}
         colors={[['#A4AA88', 1]]}
         size={300}
         strokeWidth={8}
@@ -51,15 +55,15 @@ export default function Timer() {
       >
         {({ remainingTime, animatedColor }) => (
           <View style={style.textContainer}>
-            <Animated.Text style={style.timerText}>
+            <Text style={style.timerText}>
               {timeConvert(remainingTime)}
-            </Animated.Text>
+            </Text>
             <Text style={style.subtext}>{inSession ? 'remaining' : 'minutes'}</Text>
           </View>
         )}
       </CountdownCircleTimer>
         <ActionButton resetTimer={resetTimer} />
-    </Animated.View>
+    </View>
   )
 };
 
