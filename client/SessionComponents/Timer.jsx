@@ -15,6 +15,7 @@ export default function Timer() {
   const [key, setKey] = useState(0);
 
   const timeConvert = (remainingTime) => {
+    console.log(remainingTime)
     let minutes = Math.floor(remainingTime / 60);
     let seconds = remainingTime % 60;
 
@@ -53,7 +54,7 @@ export default function Timer() {
           setInMeditation(!inMeditation);
         }}
       >
-        {({ remainingTime, animatedColor }) => (
+        {({ remainingTime }) => (
           <View style={style.textContainer}>
             <Text style={style.timerText}>
               {timeConvert(remainingTime)}

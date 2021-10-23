@@ -1,7 +1,7 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import SessionContext from '../Contexts.jsx';
-import SoundPlayer from './SoundPlayer.jsx';
+import { Audio } from 'expo-av';
 
 export default function ActionButton({ resetTimer }) {
   const {
@@ -11,20 +11,64 @@ export default function ActionButton({ resetTimer }) {
     sessionFinished, setSessionFinished
   } = useContext(SessionContext);
 
+  const [sound, setSound] = useState();
+
+  async function toggleAmbiance(status) {
+      console.log('Loading Sound');
+      const { sound } = await Audio.Sound.createAsync(
+        require('../../assets/sounds/ambiance/stormInbound.mp3')
+      );
+      sound.setStatusAsync({ isLooping: true })
+      setSound(sound);
+
+    if (status) {
+      console.log('Playing Sound');
+      await sound.playAsync();
+    } else {
+      console.log('Stopping Sound');
+      await sound.stopAsync();
+    }
+  }
+
+  useEffect(() => {
+    return sound
+      ? () => {
+        console.log('Unloading Sound');
+        sound.unloadAsync();
+      }
+      : undefined;
+  }, [sound])
+
   const sessionAction = () => {
+    // handle sound first
+    inMeditation ? toggleAmbiance(false) : toggleAmbiance(true);
+
+    // reset all session state when session is over
     if (sessionFinished) {
       setInMeditation(false);
       setInSession(false);
       setSessionFinished(false);
       resetTimer();
+      toggleAmbiance(false);
+
+    // start a session if there is no session
     } else if (!inSession) {
-      setInSession(!inSession);
-      setInMeditation(!inMeditation)
-      SoundPlayer();
+      setInSession(true);
+      console.log(inMeditation);
+      setInMeditation(!inMeditation);
+
+    // resume and pause current session
     } else {
       setInMeditation(!inMeditation);
     }
   };
+
+  const finishSession = () => {
+    setInMeditation(false);
+    setInSession(false);
+    setSessionFinished(false);
+    resetTimer();
+  }
 
   return (
     <View style={style(inMeditation).container}>
@@ -35,12 +79,7 @@ export default function ActionButton({ resetTimer }) {
       </TouchableOpacity>
       <Text
         style={style(inMeditation).finishText}
-        onPress={() => {
-          setInMeditation(false);
-          setInSession(false);
-          setSessionFinished(false);
-          resetTimer();
-        }}
+        onPress={finishSession}
       >
           {inSession && !inMeditation && !sessionFinished ?
             'Finish' : null

@@ -13,21 +13,13 @@ const Stack = createNativeStackNavigator();
 export default () => {
   const [inMeditation, setInMeditation] = useState(false);
   const [inSession, setInSession] = useState(false);
-  const [time, setTime] = useState(600);
+  const [time, setTime] = useState(25);
   const [sessionFinished, setSessionFinished] = useState(false);
   const value = {
     inMeditation, setInMeditation,
     time, setTime,
     inSession, setInSession,
     sessionFinished, setSessionFinished
-  };
-
-  useEffect(() => {
-
-  }, inMeditation)
-
-  const playSound = () => {
-
   };
 
   return (
