@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: 'column',
     flex: 1,
-    backgroundColor: 'rgba(255, 229, 217, 0.33)',
+    backgroundColor: '#f6ede9',
     alignItems: 'center',
   }
 });

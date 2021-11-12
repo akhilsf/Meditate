@@ -1,16 +1,39 @@
-import React from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import { StyleSheet, Text, View, Button } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import SessionContext from '../../Contexts.jsx';
 
 
 export default function MenuOptions({ navigation }) {
+  const {
+    time
+  } = useContext(SessionContext);
+
+  const sessionTime = () => {
+    console.log('this is time', time);
+    let tempTime = time;
+
+    let sessionLength = ``;
+    const hours = Math.floor(tempTime / 3600);
+    let minutes = tempTime / 60;
+
+    if (hours > 0) {
+      sessionLength += `${hours} hours & `;
+      minutes -= hours * 60;
+    }
+    sessionLength += `${minutes} minutes`;
+
+
+    return sessionLength;
+  }
+
   return (
     <View style={style.menu} >
       <View style={style.selectorContainer}>
         <Text style={style.text}>Time</Text>
         <Text style={style.text} onPress={() => navigation.navigate('TimeSelect')}>
-          30 minutes >
+          {sessionTime()} &#x203A;
         </Text>
       </View>
       <View style={style.line} />
