@@ -54,7 +54,7 @@ $ cd Meditate
 $ npm install
 ```
 
-#### Run the server
+#### Run scripts
 ```
 $ npm start
 ```
