@@ -8,22 +8,33 @@ A simple meditation app for the everyday meditator <br />
 (NOTE: STILL IN PRODUCTION AND CHANGING FREQUENTLY)
 </p>
 
+
+<div align="center">
+  <div style={{ display: flex }} >
+    <img src="https://user-images.githubusercontent.com/81180232/142135655-34c76566-305c-4581-aa43-46abc81cef8e.png" width="300" />
+    <img src="https://user-images.githubusercontent.com/81180232/142135666-ef490ba0-6547-4c39-af23-d28349b76b09.png" width="300" />
+  </div>
+
+  <div style={{ display: flex }} >
+    <img src="https://user-images.githubusercontent.com/81180232/142135671-b08a5cd3-1d2b-4ec1-9f78-5f4d25e338c5.png" width="300" />
+    <img src="https://user-images.githubusercontent.com/81180232/142135679-074553f4-8ebe-439b-9e8d-36008ca71be0.png" width="300" />
+  </div>
+</div>
+
 ## Key Features
 * Mobile app
 * Sleek, calming design
 * Easy setting controls
 * Time change functionality
-* Interval bells and sound functionality (to be implemented)
-* Ambiance (to be implemented)
+* Ambiance (background noise plays, but sound change is to be implemented)
+* Interval bell functionality (to be implemented)
 
 ## Tech Stack
 * JavaScript
 * React Native
-* HTML
-* CSS
 
 ## How To Use
-Clone and run this application! You'll need Git and Node.js (which comes with npm) installed on your computer.
+Clone and run your application!
 
 ### From your command line:
 
@@ -48,4 +59,4 @@ $ npm install
 $ npm start
 ```
 
-#### Metro bundler will automatically open in your browser. Run your prefered phone simulator / emulator (some features will not work on the web)
+#### ** Metro bundler will automatically open in your browser. Run your prefered phone simulator / emulator (some features will not work on the web)
