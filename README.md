@@ -5,7 +5,7 @@
 <p align="center">
 A simple meditation app for the everyday meditator <br />
 <br />
-(NOTE: STILL IN PRODUCTION AND CHANGING FREQUENTLY)
+(NOTE: STILL IN PRODUCTION)
 </p>
 
 
